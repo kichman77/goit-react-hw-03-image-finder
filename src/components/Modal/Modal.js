@@ -1,12 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
 
-const Modal = () => {
-  return (
-    <div className="Overlay">
-      <div className="Modal">
-        <img src="" alt="" />
+class Modal extends Component {
+  componentDidMount() {
+    const { closeModal } = this.props;
+    window.addEventListener("click", closeModal);
+    window.addEventListener("keydown", closeModal);
+  }
+  componentDidUpdate() {
+    const { closeModal } = this.props;
+    window.addEventListener("click", closeModal);
+    window.addEventListener("keydown", closeModal);
+  }
+  componentWillUnmount() {
+    const { closeModal } = this.props;
+    window.removeEventListener("click", closeModal);
+    window.removeEventListener("keydown", closeModal);
+  }
+  render() {
+    const { source } = this.props;
+    return (
+      <div className="Overlay">
+        <div className="Modal">
+          <img src={source} alt="img" />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 export default Modal;

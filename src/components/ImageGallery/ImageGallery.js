@@ -1,10 +1,22 @@
 import React from "react";
-import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
+import { v4 as id } from "uuid";
 
-const ImageGallery = () => {
+const ImageGallery = ({ galleryItems, openModal }) => {
   return (
     <ul className="ImageGallery">
-      <ImageGalleryItem />
+      {galleryItems.map((item) => {
+        // console.log(item);
+        const { webformatURL, largeImageURL } = item;
+        return (
+          <ImageGalleryItem
+            openModal={openModal}
+            key={id()}
+            src={webformatURL}
+            source={largeImageURL}
+          />
+        );
+      })}
     </ul>
   );
 };
