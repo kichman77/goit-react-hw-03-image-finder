@@ -1,6 +1,8 @@
 import React from "react";
-import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
 import { v4 as id } from "uuid";
+import PropTypes from "prop-types";
+
+import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
 
 const ImageGallery = ({ galleryItems, openModal }) => {
   return (
@@ -22,3 +24,13 @@ const ImageGallery = ({ galleryItems, openModal }) => {
 };
 
 export default ImageGallery;
+
+ImageGallery.propTypes = {
+  galleryItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      webformatURL: PropTypes.string.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
+    })
+  ),
+  openModal: PropTypes.func.isRequired,
+};

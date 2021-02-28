@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Searchbar = ({ getQueryValue }) => {
   return (
@@ -21,3 +22,7 @@ const Searchbar = ({ getQueryValue }) => {
   );
 };
 export default Searchbar;
+
+Searchbar.propTypes = {
+  getQueryValue: PropTypes.func.isRequired,
+};
