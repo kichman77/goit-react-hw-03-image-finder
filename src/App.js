@@ -32,13 +32,14 @@ class App extends Component {
     // console.log(e.target.elements.search.value);
     this.setState({
       query: e.target.elements.search.value,
+      galleryItems: [],
     });
     e.target.elements.search.value = "";
   };
   getFetchData = () => {
     const { query, page, perPage } = this.state;
     this.setState({ loader: true });
-    const a = api
+    return api
       .getFetch(query, page, perPage)
       .then((array) => {
         // console.log(array);
@@ -51,16 +52,14 @@ class App extends Component {
             };
           });
         }
+        if (page > 1) {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth",
+          });
+        }
       })
       .finally(() => this.setState({ loader: false }));
-    if (page > 1) {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: "smooth",
-      });
-    }
-    // console.log(a);
-    return a;
   };
 
   openModal = (source) => {
