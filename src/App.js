@@ -23,6 +23,7 @@ class App extends Component {
     // console.log("update");
     if (prevState.query !== this.state.query) {
       this.getFetchData();
+      this.setState({ page: 1 });
     }
   }
   componentWillUnmount() {}
