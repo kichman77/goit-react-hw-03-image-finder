@@ -23,7 +23,6 @@ class App extends Component {
     // console.log("update");
     if (prevState.query !== this.state.query) {
       this.getFetchData();
-      this.setState({ page: 1 });
     }
   }
   componentWillUnmount() {}
@@ -34,11 +33,13 @@ class App extends Component {
     this.setState({
       query: e.target.elements.search.value,
       galleryItems: [],
+      page: 1,
     });
     e.target.elements.search.value = "";
   };
   getFetchData = () => {
     const { query, page, perPage } = this.state;
+    console.log("page :", page);
     this.setState({ loader: true });
     return api
       .getFetch(query, page, perPage)
@@ -53,7 +54,7 @@ class App extends Component {
             };
           });
         }
-        if (page > 1) {
+        if (page > 0) {
           window.scrollTo({
             top: document.documentElement.scrollHeight,
             behavior: "smooth",
